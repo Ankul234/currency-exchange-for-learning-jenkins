@@ -17,8 +17,10 @@ Build triggers: poll SCM (based on the github)
 #pipeline script from SCM
 -> SCM -> git
 -> repo: https://github.com/Ankul234/jenkin-learning
+--> Branch specifier -> change to main (default is master)
 
 Script path: Jenkinsfile (name should match from the repo jenkinsfile)
+--> Uncheck : Lightweight checkout
 -> hit Save
 
 -> Click Build now
