@@ -14,7 +14,7 @@
 //Checkout SCM happens in it along with many other features
 pipeline {
 	//agent any//where build will run
-	agent {
+	agent {//docker as image
 		docker {
 			image 'maven:3.9.8'
 		}
