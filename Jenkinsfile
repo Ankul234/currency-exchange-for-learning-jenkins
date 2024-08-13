@@ -1,5 +1,5 @@
 //Scripted Pipeline Approach
-node {
+/*node {
 	stage('Build') {
 		echo "Build"
 	}
@@ -9,3 +9,26 @@ node {
 	//Stage can be removed as well
 	echo "integration Test"
 }
+*/
+//DECLAARATIVE PIPELINES
+pipeline {
+	agent any//where build will run
+	stages {
+		stage('Build'){
+			steps {
+				echo "Build"
+			}
+		}
+		stage('Test'){
+			steps {
+				echo "Test"
+			}
+		}
+		stage('Integration Test'){
+			steps {
+				echo "Integration Test"
+			}
+		}
+	}
+}
+
