@@ -43,19 +43,55 @@ pipeline {
 		stage('Compile'){
 			steps {
 				echo "Compile"
+				//compile the code (java)
 				sh "mvn clean compile"
 			}
 		}
 		stage('Test'){
 			steps {
 				echo "Test"
+				//To run Unit Test
+				//Files present inside src/test/java/com/
 				sh "mvn test"
 			}
-		}
+		}//Test sample can be seen inside resources folder
 		stage('Integration Test'){
 			steps {
 				echo "Integration Test"
+				//Files present inside src/test/java/com/../cucumber
 				sh "mvn failsafe:integration-test failsafe:verify"
+			}
+		}
+		//Build jar file
+		stage('Package'){
+			steps {
+				echo "Package Jar"
+				sh "mvn package -DskipTests"
+			}
+		}
+		stage('Build Docker Image'){
+			steps{
+				//Primitive way
+				//docker build -t ankul123/hello-world-python:$env.BUILD_TAG
+			    //Declarative way
+				script{
+					dockerImage = docker.build("ankul123/hello-world-python:${env.BUILD_TAG}")
+				}
+			}
+		}
+		//Give credentials of docker to Jenkins
+		//Jenkins page -> Credentials -> System -> Global credentials
+		//-> Add Credentials -> enter username/password.
+		// id and description -> dockerhub --> save
+		stage('Push Docker Image'){
+			steps{
+				script{
+					//Credentials added
+					docker.withRegistry('','dockerhub'){
+						dockerImge.push();
+						dockerImage.push('latest');
+					}
+				}
 			}
 		}
 	}//End of all stages
