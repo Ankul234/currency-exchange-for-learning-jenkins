@@ -13,10 +13,16 @@
 //DECLAARATIVE PIPELINES
 //Checkout SCM happens in it along with many other features
 pipeline {
-	agent any//where build will run
+	//agent any//where build will run
+	agent {
+		docker {
+			image 'maven:3.9.8'
+		}
+	}
 	stages {
 		stage('Build'){
 			steps {
+				sh 'mvn --version'
 				echo "Build"
 			}
 		}
@@ -31,6 +37,7 @@ pipeline {
 			}
 		}
 	}//End of all stages
+	//do something based on the status
 	post {
 		always {
 			echo 'All stages completed : '
@@ -41,6 +48,8 @@ pipeline {
 		failure {
 			echo 'Sorry Amit, Compilation failed'
 		}
+		//Other 2 status is
+		//changed and unstable
 	}
 }
 
