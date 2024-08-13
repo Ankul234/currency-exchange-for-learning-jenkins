@@ -1,0 +1,24 @@
+jenkin installation:
+create user id and password and save it.
+
+manage jenkins -> tool configuration
+--> add maven and docker
+----> give name (myMaven and myDocker) and install automatically
+
+Create a job:
+enter item name: jenkin-devops-microservice-pipelines
+select pipelines -> enter
+
+#Configure
+Build triggers: poll SCM (based on the github)
+--> run every minute (check if new build compiled in github)
+--> * * * * *
+
+#pipeline script from SCM
+-> SCM -> git
+-> repo: https://github.com/Ankul234/jenkin-learning
+
+Script path: Jenkinsfile (name should match from the repo jenkinsfile)
+-> hit Save
+
+-> Click Build now
