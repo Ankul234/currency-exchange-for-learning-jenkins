@@ -1,3 +1,4 @@
+//Scripted Pipeline Approach
 node {
 	stage('Build') {
 		echo "Build"
@@ -5,7 +6,6 @@ node {
 	stage('Test') {
 		echo "Test"
 	}
-	stage('integration Test') {
-		echo "integration Test"
-	}
+	//Stage can be removed as well
+	echo "integration Test"
 }
