@@ -13,17 +13,24 @@
 //DECLAARATIVE PIPELINES
 //Checkout SCM happens in it along with many other features
 pipeline {
-	//agent any//where build will run
-	agent {//docker as image
+	agent any//where build will run
+	/*agent {//docker as image
 		docker {
 			image 'maven:3.9.8'
 		}
-	}
+	}*/
 	stages {
 		stage('Build'){
 			steps {
-				sh 'mvn --version'
+				//sh 'mvn --version'
 				echo "Build"
+				//Print enviroment variables
+				echo "PATH -$PATH"
+				echo "BUILD_NUMBER -$env.BUILD_NUMBER"
+				echo "BUILD_ID -$env.BUILD_ID"
+				echo "JOB_NAME -$env.JOB_NAME"
+				echo "BUILD_TAG -$env.BUILD_TAG"
+				echo "BUILD_URL -$env.BUILD_URL"
 			}
 		}
 		stage('Test'){

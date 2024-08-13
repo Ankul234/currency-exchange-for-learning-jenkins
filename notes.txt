@@ -24,3 +24,8 @@ Script path: Jenkinsfile (name should match from the repo jenkinsfile)
 -> hit Save
 
 -> Click Build now
+
+--> Check jenkins file for declarative syntax
+    and different different agents
+--> Check Pipeline syntax on Jenkins page
+    --> try different different syntax
