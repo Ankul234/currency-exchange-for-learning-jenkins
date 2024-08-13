@@ -19,10 +19,17 @@ pipeline {
 			image 'maven:3.9.8'
 		}
 	}*/
+	environment {
+		//Get paths of configured tool myDocker and myMaven
+		dockerHome = tool 'myDocker'
+		mavenHome = tool 'myMaven'
+		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+	}
 	stages {
 		stage('Build'){
 			steps {
-				//sh 'mvn --version'
+				sh 'mvn --version'
+				sh 'docker version'
 				echo "Build"
 				//Print enviroment variables
 				echo "PATH -$PATH"
